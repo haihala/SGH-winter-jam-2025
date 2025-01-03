@@ -95,7 +95,7 @@ item_type = 2
 [node name="Player" parent="." instance=ExtResource("2_3hnct")]
 
 [node name="kb_player" parent="." instance=ExtResource("2_3hnct")]
-position = Vector2(-461, -34)
+position = Vector2(-113, 6)
 player_index = -1
 
 [node name="Player2" parent="." instance=ExtResource("2_3hnct")]

@@ -10,4 +10,4 @@ static func get_texture(type: Type) -> Texture:
 			return load("res://items/sword-sprite.tres")
 
 	# This should never happen, means a null item is getting a texture
-	return load("res://items/bullet-sprite.tres")
+	return load("res://items/missing-sprite.tres")

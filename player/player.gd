@@ -1,12 +1,13 @@
 extends CharacterBody2D
 
 var holding: Item.Type
-var health: int = 10
+var health: int = 3
 var movement_input: Vector2 = Vector2.ZERO
 
 @export var player_index: int = 0
 @export var speed: float = 1000
 @export var rotation_speed: float = 0.2
+@export var on_hit_knockback: float = 800
 
 @onready var attack_scene: PackedScene = load("res://items/attack.tscn")
 
@@ -14,10 +15,10 @@ func _physics_process(_delta: float) -> void:
 	if player_index == -1:
 		read_keyboard_input()
 
-	velocity = movement_input * speed
 	move_and_slide()
-	
-	
+	if $KnockdownCooldown.is_stopped():
+		velocity = movement_input * speed
+
 	if not velocity.is_zero_approx():
 		face_forward()
 
@@ -44,7 +45,7 @@ func _input(event):
 func face_forward():
 	var look_dir = Vector2(cos(rotation), sin(rotation))
 	var angle = look_dir.angle_to(velocity)
-		
+
 	if abs(angle) < rotation_speed:
 		look_at(position+velocity)
 	else:
@@ -65,7 +66,7 @@ func attack():
 func spawn_attack(scene: PackedScene, attached: bool) -> void:
 	var instance = scene.instantiate()
 	
-	var placement_offset = 50
+	var placement_offset = 30
 	var host = null
 	
 	if attached:
@@ -83,3 +84,12 @@ func spawn_attack(scene: PackedScene, attached: bool) -> void:
 
 func pick_up(item_type):
 	holding = item_type
+
+func take_damage(damaging_attack):
+	health -= 1
+	if health <= 0:
+		get_tree().queue_delete(self)
+	else:
+		$KnockdownCooldown.start()
+		var angle = damaging_attack.global_transform.get_rotation()
+		velocity = on_hit_knockback * Vector2.from_angle(angle)

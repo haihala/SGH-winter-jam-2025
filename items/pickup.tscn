@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://di6g0tqjrvx1f"]
 
 [ext_resource type="Script" path="res://items/pickup.gd" id="1_4lwds"]
-[ext_resource type="Texture2D" uid="uid://cd34g6psrig1g" path="res://items/bullet-sprite.tres" id="2_wy045"]
+[ext_resource type="Texture2D" uid="uid://cd34g6psrig1g" path="res://items/missing-sprite.tres" id="2_wy045"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qjrig"]
 radius = 47.1699

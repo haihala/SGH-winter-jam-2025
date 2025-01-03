@@ -38,7 +38,8 @@ func _physics_process(_delta: float) -> void:
 
 func collision(obj) -> void:
 	if obj != player:
-		print(obj)
+		if obj.has_method("take_damage"):
+			obj.take_damage(self)
 		despawn()
 
 func despawn() -> void:
