@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://di6g0tqjrvx1f"]
+
+[ext_resource type="Script" path="res://items/pickup.gd" id="1_4lwds"]
+[ext_resource type="Texture2D" uid="uid://cd34g6psrig1g" path="res://items/bullet-sprite.tres" id="2_wy045"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qjrig"]
+radius = 47.1699
+
+[node name="Pickup" type="Node2D"]
+script = ExtResource("1_4lwds")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(10, 10)
+texture = ExtResource("2_wy045")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_qjrig")

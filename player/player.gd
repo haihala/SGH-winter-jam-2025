@@ -3,6 +3,7 @@ extends CharacterBody2D
 var health: int = 10
 @export var speed: float = 1000
 @export var rotation_speed: float = 0.2
+var holding: Item.Type
 
 func _physics_process(delta: float) -> void:
 	var movement_input = Vector2(
@@ -23,3 +24,6 @@ func _physics_process(delta: float) -> void:
 			# Gradually turn
 			var angle_sign = 1 if angle > 0 else -1
 			rotate(angle_sign * rotation_speed)
+
+func pick_up(item_type):
+	holding = item_type
