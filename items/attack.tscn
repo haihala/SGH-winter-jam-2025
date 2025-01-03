@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmxxwxt4vdef0"]
+
+[ext_resource type="Script" path="res://items/attack.gd" id="1_vb71h"]
+[ext_resource type="Shader" path="res://items/attack.gdshader" id="2_lgvef"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cf6bo"]
+shader = ExtResource("2_lgvef")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_g6hea"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ltsvp"]
+radius = 51.0
+
+[node name="Attack" type="Node2D"]
+script = ExtResource("1_vb71h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_cf6bo")
+scale = Vector2(100, 100)
+texture = SubResource("CanvasTexture_g6hea")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ltsvp")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="despawn"]
