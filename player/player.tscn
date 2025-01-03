@@ -1,7 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://c38l8ju1ba25j"]
+[gd_scene load_steps=6 format=3 uid="uid://c38l8ju1ba25j"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_jyoey"]
-[ext_resource type="Texture2D" uid="uid://cunymnrng42sm" path="res://player/icon.svg" id="1_shs7n"]
+[ext_resource type="Shader" path="res://player/player.gdshader" id="2_ms42k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v28hc"]
+shader = ExtResource("2_ms42k")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_m8tu2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8jqps"]
 radius = 64.0312
@@ -11,8 +16,10 @@ collision_layer = 3
 script = ExtResource("1_jyoey")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_v28hc")
 rotation = 1.5708
-texture = ExtResource("1_shs7n")
+scale = Vector2(100, 100)
+texture = SubResource("CanvasTexture_m8tu2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8jqps")
