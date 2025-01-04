@@ -11,3 +11,9 @@ static func get_texture(type: Type) -> Texture:
 
 	# This should never happen, means a null item is getting a texture
 	return load("res://items/missing-sprite.tres")
+
+static func random_pickup() -> Type:
+	return [
+		Type.GUN,
+		Type.SWORD
+	].pick_random()

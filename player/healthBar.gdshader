@@ -35,7 +35,7 @@ void fragment() {
 
 	for (int segment = 0; segment < max_health; segment++) {
 		float target_ang = float(segment)*segment_width;
-		
+
 		if (abs(ang-target_ang) < GAP_THICKNESS) {
 			COLOR.a = 0.0;
 		}
