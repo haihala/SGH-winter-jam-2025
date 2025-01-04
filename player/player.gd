@@ -4,6 +4,7 @@ var holding: Item.Type
 var health: int = 3
 var money: int = 0
 var movement_input: Vector2 = Vector2.ZERO
+var ammo: int = -1
 
 @export var player_index: int = 0
 @export var speed: float = 1000
@@ -82,6 +83,10 @@ func attack():
 			Item.Type.NONE:
 				spawn_attack(attack_scene, true)
 
+		ammo -= 1
+		if ammo == 0:	# -1 ammo means infinite
+			holding = Item.Type.NONE
+
 func spawn_attack(scene: PackedScene, attached: bool) -> void:
 	var instance = scene.instantiate()
 	
@@ -103,6 +108,7 @@ func spawn_attack(scene: PackedScene, attached: bool) -> void:
 
 func pick_up(item_type):
 	holding = item_type
+	ammo = Item.ammo_for(item_type)
 
 func take_damage(damaging_attack):
 	health -= 1

@@ -17,3 +17,11 @@ static func random_pickup() -> Type:
 		Type.GUN,
 		Type.SWORD
 	].pick_random()
+
+static func ammo_for(type: Type) -> int:
+	match type:
+		Type.GUN:
+			return 6
+
+	# Infinite
+	return -1
