@@ -1,19 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://c38l8ju1ba25j"]
+[gd_scene load_steps=6 format=3 uid="uid://c38l8ju1ba25j"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_jyoey"]
-[ext_resource type="Shader" path="res://player/healthBar.gdshader" id="2_a8kos"]
 [ext_resource type="Shader" path="res://player/player.gdshader" id="2_ms42k"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_x4ir1"]
-resource_local_to_scene = true
-shader = ExtResource("2_a8kos")
-shader_parameter/max_health = 5
-shader_parameter/current_health = 1
-shader_parameter/full_color = Vector3(0, 1, 0)
-shader_parameter/almost_full_color = Vector3(0.5, 1, 0.2)
-shader_parameter/empty_color = Vector3(1, 0, 0)
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_kl2ve"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v28hc"]
 resource_local_to_scene = true
@@ -28,11 +16,6 @@ radius = 40.1995
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 7
 script = ExtResource("1_jyoey")
-
-[node name="HealthSprite" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_x4ir1")
-scale = Vector2(200, 200)
-texture = SubResource("CanvasTexture_kl2ve")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_v28hc")

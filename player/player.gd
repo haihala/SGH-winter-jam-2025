@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 var holding: Item.Type
 var health: int = 3
+var money: int = 0
 var movement_input: Vector2 = Vector2.ZERO
 
 @export var player_index: int = 0
@@ -9,7 +10,8 @@ var movement_input: Vector2 = Vector2.ZERO
 @export var rotation_speed: float = 0.2
 @export var on_hit_knockback: float = 800
 
-@onready var attack_scene: PackedScene = load("res://items/attack.tscn")
+@onready var attack_scene: PackedScene = load("res://attacks/attack.tscn")
+@onready var hud_scene: PackedScene = load("res://player/player_hud.tscn")
 var player_color: Color = Color.BLACK
 
 func _ready() -> void:
@@ -20,8 +22,9 @@ func _ready() -> void:
 		2: player_color = Color.MEDIUM_VIOLET_RED
 		3: player_color = Color.DARK_RED
 	$Sprite2D.material.set_shader_parameter("player_color", player_color)
-	$HealthSprite.material.set_shader_parameter("max_health", health)
-	$HealthSprite.material.set_shader_parameter("current_health", health)
+	var hud = hud_scene.instantiate()
+	hud.init(self)
+	get_parent().add_child.call_deferred(hud)
 
 func _physics_process(_delta: float) -> void:
 	if player_index == -1:
@@ -39,6 +42,9 @@ func read_keyboard_input():
 	
 	if Input.is_action_just_pressed("kb_attack"):
 		attack()
+
+	if Input.is_action_just_pressed("kb_interact"):
+		money += 1
 
 func _input(event):
 	if event.device != player_index || event.is_echo():
@@ -64,8 +70,7 @@ func face_forward():
 		# Gradually turn
 		var angle_sign = 1 if angle > 0 else -1
 		rotate(angle_sign * rotation_speed)
-		
-	$HealthSprite.rotation = -rotation
+
 
 func attack():
 	if $AttackCooldown.is_stopped():
@@ -101,7 +106,6 @@ func pick_up(item_type):
 
 func take_damage(damaging_attack):
 	health -= 1
-	$HealthSprite.material.set_shader_parameter("current_health", health)
 	if health <= 0:
 		get_tree().queue_delete(self)
 	else:

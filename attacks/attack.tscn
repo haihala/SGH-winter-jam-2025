@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bmxxwxt4vdef0"]
 
-[ext_resource type="Script" path="res://items/attack.gd" id="1_vb71h"]
-[ext_resource type="Shader" path="res://items/attack.gdshader" id="2_lgvef"]
+[ext_resource type="Script" path="res://attacks/attack.gd" id="1_vb71h"]
+[ext_resource type="Shader" path="res://attacks/attack.gdshader" id="2_lgvef"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cf6bo"]
 resource_local_to_scene = true
