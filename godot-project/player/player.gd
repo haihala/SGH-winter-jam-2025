@@ -86,6 +86,7 @@ func attack():
 		ammo -= 1
 		if ammo == 0:	# -1 ammo means infinite
 			holding = Item.Type.NONE
+		$AttackSound.play(0.0)
 
 func spawn_attack(scene: PackedScene, attached: bool) -> void:
 	var instance = scene.instantiate()

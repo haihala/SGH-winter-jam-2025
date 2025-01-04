@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c38l8ju1ba25j"]
+[gd_scene load_steps=7 format=3 uid="uid://c38l8ju1ba25j"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_jyoey"]
 [ext_resource type="Shader" path="res://player/player.gdshader" id="2_ms42k"]
+[ext_resource type="AudioStream" uid="uid://cr4cky5f2txh1" path="res://player/pointy-octave0-f.wav" id="3_gwkjf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v28hc"]
 resource_local_to_scene = true
@@ -33,3 +34,7 @@ one_shot = true
 [node name="KnockdownCooldown" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="AttackSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_gwkjf")
+pitch_scale = 4.0
