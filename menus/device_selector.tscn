@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2by12q5mq0u0"]
+
+[ext_resource type="Theme" uid="uid://ck8eyctgeg42k" path="res://theme.tres" id="1_04gjd"]
+[ext_resource type="Script" path="res://menus/device_selector.gd" id="1_bc145"]
+[ext_resource type="Texture2D" uid="uid://b5lg2fwtrdidw" path="res://menus/cross.tres" id="3_x3sht"]
+[ext_resource type="Texture2D" uid="uid://bhpd83vlchfp6" path="res://menus/checkmark.tres" id="4_xc3n4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_quesk"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="Device selector" type="VBoxContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -25.5
+offset_right = 37.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+script = ExtResource("1_bc145")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("1_04gjd")
+text = "Keyboard"
+label_settings = SubResource("LabelSettings_quesk")
+
+[node name="Icons" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="No" type="TextureRect" parent="Icons"]
+layout_mode = 2
+texture = ExtResource("3_x3sht")
+
+[node name="Yes" type="TextureRect" parent="Icons"]
+layout_mode = 2
+texture = ExtResource("4_xc3n4")

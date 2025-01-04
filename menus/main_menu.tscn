@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://ciuikg4bnh26l"]
+
+[ext_resource type="Script" path="res://menus/play_button.gd" id="1_7626g"]
+[ext_resource type="Theme" uid="uid://ck8eyctgeg42k" path="res://theme.tres" id="1_iq0p2"]
+[ext_resource type="Script" path="res://menus/main_menu.gd" id="1_yv2m5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xw5ru"]
+font_size = 87
+font_color = Color(0, 0, 0, 1)
+
+[node name="Main menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yv2m5")
+
+[node name="Container" type="VBoxContainer" parent="."]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Container"]
+layout_mode = 2
+text = "The name of the game!"
+label_settings = SubResource("LabelSettings_xw5ru")
+
+[node name="Button container" type="VBoxContainer" parent="Container"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Play button" type="Button" parent="Container/Button container"]
+layout_mode = 2
+theme = ExtResource("1_iq0p2")
+text = "Play
+"
+script = ExtResource("1_7626g")
+
+[node name="Tutorial button" type="Button" parent="Container/Button container"]
+layout_mode = 2
+theme = ExtResource("1_iq0p2")
+text = "Tutorial (TODO)"
+
+[node name="Quit button" type="Button" parent="Container/Button container"]
+layout_mode = 2
+theme = ExtResource("1_iq0p2")
+text = "Quit to desktop
+"
+
+[connection signal="pressed" from="Container/Button container/Play button" to="." method="go_to_controller_select"]
+[connection signal="pressed" from="Container/Button container/Tutorial button" to="." method="go_to_tutorial"]
+[connection signal="pressed" from="Container/Button container/Quit button" to="." method="quit_to_desktop"]

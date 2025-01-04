@@ -18,10 +18,12 @@ func setup(player_indices: Array) -> void:
 			add_child(spawner)
 			erase_cell(coords)
 		elif td.get_custom_data("player_spawner"):
-			var player = player_prefab.instantiate()
-			player.player_index = player_indices[player_index]
-			player_index += 1
-			player.position = tile_position * scale
-			player.look_at(Vector2.ZERO)
-			get_tree().root.add_child.call_deferred(player)
 			erase_cell(coords)
+			
+			if player_index < player_indices.size():
+				var player = player_prefab.instantiate()
+				player.player_index = player_indices[player_index]
+				player_index += 1
+				player.position = tile_position * scale
+				player.look_at(Vector2.ZERO)
+				get_tree().root.add_child.call_deferred(player)
