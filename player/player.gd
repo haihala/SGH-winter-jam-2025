@@ -20,6 +20,8 @@ func _ready() -> void:
 		2: player_color = Color.MEDIUM_VIOLET_RED
 		3: player_color = Color.DARK_RED
 	$Sprite2D.material.set_shader_parameter("player_color", player_color)
+	$HealthSprite.material.set_shader_parameter("max_health", health)
+	$HealthSprite.material.set_shader_parameter("current_health", health)
 
 func _physics_process(_delta: float) -> void:
 	if player_index == -1:
@@ -62,6 +64,8 @@ func face_forward():
 		# Gradually turn
 		var angle_sign = 1 if angle > 0 else -1
 		rotate(angle_sign * rotation_speed)
+		
+	$HealthSprite.rotation = -rotation
 
 func attack():
 	if $AttackCooldown.is_stopped():
@@ -97,6 +101,7 @@ func pick_up(item_type):
 
 func take_damage(damaging_attack):
 	health -= 1
+	$HealthSprite.material.set_shader_parameter("current_health", health)
 	if health <= 0:
 		get_tree().queue_delete(self)
 	else:
