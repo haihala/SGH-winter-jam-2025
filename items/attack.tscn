@@ -4,7 +4,9 @@
 [ext_resource type="Shader" path="res://items/attack.gdshader" id="2_lgvef"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cf6bo"]
+resource_local_to_scene = true
 shader = ExtResource("2_lgvef")
+shader_parameter/player_color = null
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_g6hea"]
 

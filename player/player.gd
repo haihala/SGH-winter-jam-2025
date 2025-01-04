@@ -10,6 +10,16 @@ var movement_input: Vector2 = Vector2.ZERO
 @export var on_hit_knockback: float = 800
 
 @onready var attack_scene: PackedScene = load("res://items/attack.tscn")
+var player_color: Color = Color.BLACK
+
+func _ready() -> void:
+	match player_index:
+		-1: player_color = Color.NAVY_BLUE
+		0: player_color = Color.DARK_ORANGE
+		1: player_color = Color.DARK_GREEN
+		2: player_color = Color.MEDIUM_VIOLET_RED
+		3: player_color = Color.DARK_RED
+	$Sprite2D.material.set_shader_parameter("player_color", player_color)
 
 func _physics_process(_delta: float) -> void:
 	if player_index == -1:

@@ -4,7 +4,9 @@
 [ext_resource type="Shader" path="res://player/player.gdshader" id="2_ms42k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v28hc"]
+resource_local_to_scene = true
 shader = ExtResource("2_ms42k")
+shader_parameter/player_color = null
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_m8tu2"]
 
