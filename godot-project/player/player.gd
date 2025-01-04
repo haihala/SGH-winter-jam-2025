@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal death
+
 var holding: Item.Type
 var health: int = 3
 var money: int = 0
@@ -114,7 +116,7 @@ func pick_up(item_type):
 func take_damage(damaging_attack):
 	health -= 1
 	if health <= 0:
-		get_tree().queue_delete(self)
+		death.emit(player_index)
 	else:
 		$KnockdownCooldown.start()
 		var angle = damaging_attack.global_transform.get_rotation()
