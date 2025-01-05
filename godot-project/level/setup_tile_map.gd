@@ -30,7 +30,17 @@ func setup() -> Array[Vector2]:
 			machine.item_type = Item.Type.SHOTGUN
 			machine.cost = 3
 			get_parent().add_child(machine)
+
+		elif td.get_custom_data("machinegun_vending_machine"):
+			erase_cell(coords)
 			
+			var machine = vending_scene.instantiate()
+			machine.position = tile_position
+			machine.scale *= scale
+			machine.item_type = Item.Type.MACHINEGUN
+			machine.cost = 2
+			get_parent().add_child(machine)
+
 		elif td.get_custom_data("health_vending_machine"):
 			erase_cell(coords)
 		

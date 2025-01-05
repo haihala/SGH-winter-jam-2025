@@ -25,6 +25,7 @@ var sprite_shake = 0.0
 var sprite_shake_decay = 1.0
 var sprite_shake_speed = 4200.0
 
+@export var machinegun_sound: AudioStream
 @export var shotgun_sound: AudioStream
 @export var pistol_sound: AudioStream
 @export var sword_sound: AudioStream
@@ -91,26 +92,29 @@ func attack():
 	if $AttackCooldown.is_stopped():
 		match holding:
 			Item.Type.SHOTGUN:
-				spawn_attack(attack_scene, false, -PI/4)
-				spawn_attack(attack_scene, false, -PI/8)
-				spawn_attack(attack_scene, false)
-				spawn_attack(attack_scene, false, PI/8)
-				spawn_attack(attack_scene, false, PI/4)
+				spawn_attack(false, -PI/4)
+				spawn_attack(false, -PI/8)
+				spawn_attack(false)
+				spawn_attack(false, PI/8)
+				spawn_attack(false, PI/4)
 				$AttackSound.stream = shotgun_sound
 				$AttackSound.volume_db = 5
-				
+
+			Item.Type.MACHINEGUN:
+				shoot_burst()
+
 			Item.Type.GUN:
-				spawn_attack(attack_scene, false)
+				spawn_attack(false)
 				$AttackSound.stream = pistol_sound
 				$AttackSound.volume_db = -15
 				
 			Item.Type.SWORD:
-				spawn_attack(attack_scene, true)
+				spawn_attack(true)
 				$AttackSound.stream = sword_sound
 				$AttackSound.volume_db = 1
 
 			Item.Type.NONE:
-				spawn_attack(attack_scene, true)
+				spawn_attack(true)
 				$AttackSound.stream = fist_sound
 				$AttackSound.volume_db = -10
 		$AttackSound.play(0.0)
@@ -120,8 +124,17 @@ func attack():
 			holding = Item.Type.NONE
 			new_held_item.emit(holding)
 
-func spawn_attack(scene: PackedScene, attached: bool, angle_offset: float = 0) -> void:
-	var instance = scene.instantiate()
+func shoot_burst() -> void:
+	for _i in range(5):
+		print(_i)
+		spawn_attack(false)
+		$AttackSound.stream = machinegun_sound
+		$AttackSound.volume_db = 0
+		$AttackSound.play(0.0)
+		await get_tree().create_timer(0.1).timeout
+
+func spawn_attack(attached: bool, angle_offset: float = 0) -> void:
+	var instance = attack_scene.instantiate()
 	
 	var placement_offset = 30
 	var host = null
@@ -197,6 +210,6 @@ func update_sprite_shake(delta: float) -> void:
 	else:
 		sprite_shake -= decay
 	
-	var seed = Time.get_unix_time_from_system() * sprite_shake_speed
-	$Sprite.offset.x = cos(seed) * sprite_shake
-	$Sprite.offset.y = sin(seed) * sprite_shake
+	var angle = Time.get_unix_time_from_system() * sprite_shake_speed
+	$Sprite.offset.x = cos(angle) * sprite_shake
+	$Sprite.offset.y = sin(angle) * sprite_shake

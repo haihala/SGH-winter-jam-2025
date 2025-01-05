@@ -18,9 +18,14 @@ func configure(shooter) -> float:
 			speed = 20
 			return 0.5
 
+		Item.Type.MACHINEGUN:
+			speed = 30
+			return 1.0
+
 		Item.Type.GUN:
 			speed = 40
 			return 0.1
+
 
 		Item.Type.SWORD:
 			speed = 2

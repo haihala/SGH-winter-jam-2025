@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://c38l8ju1ba25j"]
+[gd_scene load_steps=13 format=3 uid="uid://c38l8ju1ba25j"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_jyoey"]
 [ext_resource type="AudioStream" uid="uid://ds4djkgt4xsy6" path="res://player/shotgun.wav" id="2_ihuu4"]
 [ext_resource type="Shader" path="res://player/player.gdshader" id="2_ms42k"]
+[ext_resource type="AudioStream" uid="uid://b1oqtiahf6gtw" path="res://player/machinegun.wav" id="2_wl6qe"]
 [ext_resource type="AudioStream" uid="uid://crd6esb3o162u" path="res://player/pistol.wav" id="3_ng61f"]
 [ext_resource type="AudioStream" uid="uid://b8pxksr3wx1eo" path="res://player/sword.wav" id="4_wxm7v"]
 [ext_resource type="AudioStream" uid="uid://c7u071r2ipbs8" path="res://player/punch.wav" id="5_ragnj"]
@@ -22,6 +23,7 @@ radius = 40.1995
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 15
 script = ExtResource("1_jyoey")
+machinegun_sound = ExtResource("2_wl6qe")
 shotgun_sound = ExtResource("2_ihuu4")
 pistol_sound = ExtResource("3_ng61f")
 sword_sound = ExtResource("4_wxm7v")
