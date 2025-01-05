@@ -10,10 +10,9 @@
 size = Vector2(14, 13)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_amadv"]
-radius = 13.4017
+radius = 14.3611
 
 [node name="VendingMachine" type="StaticBody2D" node_paths=PackedStringArray("money_sample")]
-position = Vector2(22.917, 21.131)
 scale = Vector2(3, 3)
 script = ExtResource("1_31ct4")
 item_type = 3
@@ -34,7 +33,7 @@ texture = ExtResource("3_3swuh")
 visible = false
 texture_filter = 1
 position = Vector2(3.5, 4)
-rotation = -0.0872665
+rotation = -0.349066
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("4_oklvc")
 

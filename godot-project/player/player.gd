@@ -1,15 +1,19 @@
 extends CharacterBody2D
 
+class_name Player
+
 signal death
 signal update_money_ui
 signal new_held_item
 
 var holding: Item.Type
-var health: int = 3
+var max_health: int = 3
+var health: int = max_health
 var money: int = 0
 var movement_input: Vector2 = Vector2.ZERO
 var ammo: int = -1
 var machines_in_range: Array[VendingMachine] = []
+var interact_target: Node2D
 
 var player_index: int = 0
 var speed: float = 1000
@@ -35,9 +39,9 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	if $KnockdownCooldown.is_stopped():
 		velocity = movement_input * speed
-
 	if not velocity.is_zero_approx():
 		face_forward()
+	update_interact_target()
 
 func read_keyboard_input():
 	movement_input = Input.get_vector("kb_left", "kb_right", "kb_up", "kb_down")
@@ -131,26 +135,30 @@ func spawn_attack(scene: PackedScene, attached: bool, angle_offset: float = 0) -
 	host.add_child(instance)
 	$AttackCooldown.start(instance.configure(self))
 
-func interact() -> void:
-	print(machines_in_range)
+func update_interact_target() -> void:
 	if machines_in_range.is_empty():
-		return
+		interact_target = null
 	
 	var closest_affordable = null
 	var min_dist = INF
 	for machine in machines_in_range:
 		if machine.cost > money:
 			continue
+
+		if machine.item_type == Item.Type.HEART && health == max_health:
+			continue
 		
 		var dist = (position - machine.position).length()
 		if dist < min_dist:
 			min_dist = dist
 			closest_affordable = machine
-	
-	if closest_affordable != null:
-		closest_affordable.buy_from()
-		money -= closest_affordable.cost
-		pick_up(closest_affordable.item_type)
+	interact_target = closest_affordable
+
+func interact() -> void:
+	if interact_target != null:
+		interact_target.buy_from()
+		money -= interact_target.cost
+		pick_up(interact_target.item_type)
 
 func pick_up(item_type):
 	$PickupSound.play()

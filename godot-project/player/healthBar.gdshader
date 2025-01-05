@@ -9,7 +9,7 @@ uniform vec3 empty_color;
 const float GAP_THICKNESS = 0.1;
 
 void fragment() {
-	if (current_health == max_health) {
+	if (current_health >= max_health) {
 		COLOR.rgb = full_color;
 	} else if (current_health == 1) {
 		COLOR.rgb = empty_color;

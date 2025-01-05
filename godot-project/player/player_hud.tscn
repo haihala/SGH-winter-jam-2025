@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cw6o6w86eyaty"]
+[gd_scene load_steps=9 format=3 uid="uid://cw6o6w86eyaty"]
 
 [ext_resource type="Script" path="res://player/player_hud.gd" id="1_dja8r"]
 [ext_resource type="Theme" uid="uid://ck8eyctgeg42k" path="res://theme.tres" id="2_1wq5q"]
 [ext_resource type="Shader" path="res://player/healthBar.gdshader" id="3_suj2l"]
+[ext_resource type="Shader" path="res://player/arrow.gdshader" id="4_tneb5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ostl4"]
 font_size = 250
@@ -14,12 +15,15 @@ outline_color = Color(0, 0, 0, 1)
 resource_local_to_scene = true
 shader = ExtResource("3_suj2l")
 shader_parameter/max_health = 3
-shader_parameter/current_health = 2
+shader_parameter/current_health = 3
 shader_parameter/full_color = Vector3(0.2, 1, 0.2)
 shader_parameter/almost_full_color = Vector3(0.4, 0.8, 0.3)
 shader_parameter/empty_color = Vector3(1, 0.3, 0.2)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ofh67"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lksdj"]
+shader = ExtResource("4_tneb5")
 
 [node name="PlayerHUD" type="Node2D"]
 z_index = -1
@@ -37,5 +41,10 @@ horizontal_alignment = 1
 
 [node name="HealthSprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_7h3e8")
+scale = Vector2(200, 200)
+texture = SubResource("CanvasTexture_ofh67")
+
+[node name="InteractPointer" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_lksdj")
 scale = Vector2(200, 200)
 texture = SubResource("CanvasTexture_ofh67")

@@ -36,11 +36,10 @@ func player_death(dying_player_index, killer_index) -> void:
 		Globals.player_scores[killer_index]
 	)
 
-	# TODO: Spawn money based on dying player's money
 	var pickup = pickup_scene.instantiate()
 	pickup.item_type = Item.Type.MONEY
 	pickup.position = players[dying_player_index].position
-	get_tree().root.add_child(pickup)
+	add_child.call_deferred(pickup)
 
 	huds[dying_player_index].update_money(0)
 
@@ -59,12 +58,12 @@ func spawn_player(player_index, point) -> void:
 	player.update_money_ui.connect(huds[player_index].update_money)
 	player.new_held_item.connect(huds[player_index].update_held_item)
 	players[player_index] = player
-	get_tree().root.add_child.call_deferred(player)
+	add_child.call_deferred(player)
 	
 	var float_hud = float_hud_scene.instantiate()
-	float_hud.init(player)
+	float_hud.player = player
 	player.update_money_ui.connect(float_hud.update_money)
-	get_tree().root.add_child.call_deferred(float_hud)
+	add_child.call_deferred(float_hud)
 
 func find_open_spawn():
 	# Finds the one with the most distance to the closest player
