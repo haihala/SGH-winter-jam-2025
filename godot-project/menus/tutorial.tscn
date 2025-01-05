@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://djcsjpvr821k0"]
+
+[ext_resource type="Theme" uid="uid://ck8eyctgeg42k" path="res://theme.tres" id="1_330yh"]
+[ext_resource type="Script" path="res://menus/tutorial.gd" id="1_sfk7v"]
+[ext_resource type="Script" path="res://menus/autofocus.gd" id="2_5aj8h"]
+
+[node name="Tutorial" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+script = ExtResource("1_sfk7v")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_330yh")
+theme_override_font_sizes/font_size = 100
+text = "Tutorial"
+
+[node name="Body" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(620, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("1_330yh")
+text = "The game started as a recreation of \"Speli\", an old Finnish game, but ended up as a wonky 2d quake.
+
+A game lasts for 2 minutes. It's won by the player with most kills at the end.
+A dying player drops money. Pick up money to buy healing and better weapons from vending machines.
+
+Controls:
+- Move with wasd / dpad / left stick.
+- Attack with space / bottom controller face button (A on xbox, X on playstation)
+- Interact with e / right controller face button (B on xbox, circle on playstation)"
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Return to main menu"
+script = ExtResource("2_5aj8h")
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="to_main_menu"]

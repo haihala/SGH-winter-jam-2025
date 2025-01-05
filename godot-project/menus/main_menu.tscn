@@ -52,7 +52,7 @@ script = ExtResource("1_7626g")
 [node name="Tutorial button" type="Button" parent="Container/Button container"]
 layout_mode = 2
 theme = ExtResource("1_iq0p2")
-text = "Tutorial (TODO)"
+text = "Tutorial"
 
 [node name="Quit button" type="Button" parent="Container/Button container"]
 layout_mode = 2
