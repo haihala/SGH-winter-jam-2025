@@ -26,11 +26,11 @@ func configure(shooter) -> float:
 			speed = 40
 			return 0.1
 
-
 		Item.Type.SWORD:
 			speed = 2
-			scale.x = 1.5
+			scale.x = 2.0
 			scale.y = 3.0
+			position.x = 100
 			$Timer.start()
 			return 1.0
 
