@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://oxmwk48rbsxo"]
+[gd_scene load_steps=8 format=4 uid="uid://oxmwk48rbsxo"]
 
 [ext_resource type="Texture2D" uid="uid://qkl7pf5d2ldt" path="res://sprite_sheet.png" id="1_7x67d"]
 [ext_resource type="Script" path="res://level/world.gd" id="1_osrak"]
 [ext_resource type="Script" path="res://level/setup_tile_map.gd" id="3_74ovu"]
 [ext_resource type="AudioStream" uid="uid://codcrar0rhdr0" path="res://level/pointy-octave3-d.wav" id="4_24okt"]
+[ext_resource type="Theme" uid="uid://ck8eyctgeg42k" path="res://theme.tres" id="5_6xw6o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b1nh1"]
 texture = ExtResource("1_7x67d")
@@ -83,8 +84,10 @@ custom_data_layer_1/name = "player_spawner"
 custom_data_layer_1/type = 1
 sources/1 = SubResource("TileSetAtlasSource_b1nh1")
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" node_paths=PackedStringArray("player_hud_container", "timer_label")]
 script = ExtResource("1_osrak")
+player_hud_container = NodePath("HUD/HBoxContainer/VBoxContainer2/HBoxContainer/Player pane container")
+timer_label = NodePath("HUD/HBoxContainer/VBoxContainer2/MarginContainer/HBoxContainer/HBoxContainer/Timer")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2000, 0)
@@ -112,5 +115,49 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="HUD/HBoxContainer"]
 layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_right = 50
+
+[node name="HBoxContainer" type="VBoxContainer" parent="HUD/HBoxContainer/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="Timer text" type="Label" parent="HUD/HBoxContainer/VBoxContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_6xw6o")
+theme_override_font_sizes/font_size = 60
+text = "Game ends in "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/HBoxContainer/VBoxContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="HUD/HBoxContainer/VBoxContainer2/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Timer" type="Label" parent="HUD/HBoxContainer/VBoxContainer2/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_6xw6o")
+theme_override_font_sizes/font_size = 60
+text = "10:00"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="HUD/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Player pane container" type="VBoxContainer" parent="HUD/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 120.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="timeout"]

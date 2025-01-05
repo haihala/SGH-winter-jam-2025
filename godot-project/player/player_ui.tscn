@@ -4,12 +4,17 @@
 [ext_resource type="Theme" uid="uid://ck8eyctgeg42k" path="res://theme.tres" id="2_w4qbw"]
 
 [node name="Player UI" type="MarginContainer" node_paths=PackedStringArray("player_label", "money_label", "score_label")]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -192.0
-offset_bottom = 96.0
-grow_horizontal = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -68.0
+offset_right = 121.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 20

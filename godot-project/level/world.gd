@@ -4,6 +4,9 @@ extends Node2D
 @onready var pickup_scene: PackedScene = load("res://items/pickup.tscn")
 @onready var float_hud_scene: PackedScene = load("res://player/player_hud.tscn")
 
+@export var player_hud_container: Control
+@export var timer_label: Label
+
 
 var spawn_points: Array[Vector2] = []
 var players = {}
@@ -17,6 +20,14 @@ func _ready() -> void:
 	for index in range(Globals.player_handles.size()):
 		spawn_player(Globals.player_handles[index], spawn_points[index])
 
+func _process(_delta: float) -> void:
+	var seconds = int(ceil($Timer.time_left))
+	var minutes = seconds / 60
+	var leftover_seconds = seconds - (minutes * 60)
+	timer_label.text = "%02d:%02d" % [minutes, leftover_seconds]
+
+func timeout() -> void:
+	print("timeout")
 
 func player_death(dying_player_index, killer) -> void:
 	killer.score += 1
@@ -76,4 +87,4 @@ func setup_huds() -> void:
 		player_hud.init(label_number)
 		label_number += 1
 		huds[handle] = player_hud
-		$HUD/HBoxContainer/VBoxContainer.add_child(player_hud)
+		player_hud_container.add_child(player_hud)
