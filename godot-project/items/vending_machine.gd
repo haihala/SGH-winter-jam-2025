@@ -25,12 +25,20 @@ func spawn_bill_at(x: float) -> void:
 	dupe.visible = true
 	add_child(dupe)
 
-func buy_from() -> void:
+func interact(player: Player) -> void:
+	player.money -= cost
+	player.pick_up(item_type)
 	$AudioStreamPlayer.play(0)
 
 func player_enter(player) -> void:
-	player.machines_in_range.push_back(self)
+	if cost > player.money:
+		return
+
+	if item_type == Item.Type.HEART && player.health == player.max_health:
+		return
+		
+	player.interactables_in_range.push_back(self)
 
 func player_exit(player) -> void:
-	if self in player.machines_in_range:
-		player.machines_in_range.erase(self)
+	if self in player.interactables_in_range:
+		player.interactables_in_range.erase(self)

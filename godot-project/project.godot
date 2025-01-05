@@ -103,6 +103,7 @@ kb_attack={
 [layer_names]
 
 2d_physics/layer_1="Terrain"
+2d_physics/layer_2="pickups"
 2d_physics/layer_3="Targetables"
 2d_physics/layer_4="Vending"
 

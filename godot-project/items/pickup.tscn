@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://items/pickup.gd" id="1_4lwds"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qjrig"]
-radius = 91.0879
+radius = 395.02
 
 [node name="Pickup" type="Node2D"]
 script = ExtResource("1_4lwds")
@@ -19,7 +19,5 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_qjrig")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.2
-one_shot = true
-autostart = true
+[connection signal="body_entered" from="Area2D" to="." method="collision"]
+[connection signal="body_exited" from="Area2D" to="." method="player_exit"]

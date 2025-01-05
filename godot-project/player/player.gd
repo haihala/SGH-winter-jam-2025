@@ -12,7 +12,7 @@ var health: int = max_health
 var money: int = 0
 var movement_input: Vector2 = Vector2.ZERO
 var ammo: int = -1
-var machines_in_range: Array[VendingMachine] = []
+var interactables_in_range: Array[Node] = []
 var interact_target: Node2D
 
 var player_index: int = 0
@@ -154,29 +154,18 @@ func spawn_attack(attached: bool, angle_offset: float = 0) -> void:
 	$AttackCooldown.start(instance.configure(self))
 
 func update_interact_target() -> void:
-	if machines_in_range.is_empty():
-		interact_target = null
-	
-	var closest_affordable = null
+	var closest = null
 	var min_dist = INF
-	for machine in machines_in_range:
-		if machine.cost > money:
-			continue
-
-		if machine.item_type == Item.Type.HEART && health == max_health:
-			continue
-		
-		var dist = (position - machine.position).length()
+	for interactable in interactables_in_range:
+		var dist = (position - interactable.position).length()
 		if dist < min_dist:
 			min_dist = dist
-			closest_affordable = machine
-	interact_target = closest_affordable
+			closest = interactable
+	interact_target = closest
 
 func interact() -> void:
 	if interact_target != null:
-		interact_target.buy_from()
-		money -= interact_target.cost
-		pick_up(interact_target.item_type)
+		interact_target.interact(self)
 
 func pick_up(item_type):
 	$PickupSound.play()

@@ -45,6 +45,7 @@ scale = Vector2(200, 200)
 texture = SubResource("CanvasTexture_ofh67")
 
 [node name="InteractPointer" type="Sprite2D" parent="."]
+z_index = 10
 material = SubResource("ShaderMaterial_lksdj")
-scale = Vector2(200, 200)
+scale = Vector2(300, 300)
 texture = SubResource("CanvasTexture_ofh67")

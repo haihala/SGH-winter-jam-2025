@@ -36,7 +36,10 @@ A dying player drops money. Pick up money to buy healing and better weapons from
 Controls:
 - Move with wasd / dpad / left stick.
 - Attack with space / bottom controller face button (A on xbox, X on playstation)
-- Interact with e / right controller face button (B on xbox, circle on playstation)"
+    - There are ranged and melee weapons. Ranged weapons have limited ammo
+- Interact with e / right controller face button (B on xbox, circle on playstation)
+    - Used for picking stuff up and interacting with vending machines
+    - Arrow indicates active interactable"
 autowrap_mode = 3
 
 [node name="Button" type="Button" parent="VBoxContainer"]
