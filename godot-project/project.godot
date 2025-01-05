@@ -105,6 +105,12 @@ kb_attack={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Terrain"
+2d_physics/layer_3="Targetables"
+2d_physics/layer_4="Vending"
+
 [rendering]
 
 environment/defaults/default_clear_color=Color(1, 1, 1, 1)

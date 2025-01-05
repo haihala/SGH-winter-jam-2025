@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://blocq8j366fc0"]
+
+[ext_resource type="Script" path="res://items/vending_machine.gd" id="1_31ct4"]
+[ext_resource type="Texture2D" uid="uid://bxl2t73yams75" path="res://items/vending-machine.tres" id="1_fx7ob"]
+[ext_resource type="Texture2D" uid="uid://crrscr0kweurw" path="res://items/shotgun-sprite.tres" id="3_3swuh"]
+[ext_resource type="Texture2D" uid="uid://bqq5jqpyaicrn" path="res://items/money-sprite.tres" id="4_oklvc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p0yxx"]
+size = Vector2(14, 13)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_amadv"]
+radius = 13.4017
+
+[node name="VendingMachine" type="StaticBody2D" node_paths=PackedStringArray("money_sample")]
+position = Vector2(22.917, 21.131)
+scale = Vector2(3, 3)
+script = ExtResource("1_31ct4")
+item_type = 3
+cost = 1
+money_sample = NodePath("Money sprite")
+
+[node name="Frame sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_fx7ob")
+
+[node name="Item sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -2)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("3_3swuh")
+
+[node name="Money sprite" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(3.5, 4)
+rotation = -0.0872665
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_oklvc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_p0yxx")
+
+[node name="Trigger area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger area"]
+shape = SubResource("CircleShape2D_amadv")
+
+[connection signal="body_entered" from="Trigger area" to="." method="player_enter"]
+[connection signal="body_exited" from="Trigger area" to="." method="player_exit"]

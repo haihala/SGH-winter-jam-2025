@@ -14,8 +14,12 @@ func configure(shooter) -> float:
 	self.player = shooter
 	$Sprite2D.material.set_shader_parameter("player_color", shooter.player_color)
 	match shooter.holding:
-		Item.Type.GUN:
+		Item.Type.SHOTGUN:
 			speed = 20
+			return 0.5
+
+		Item.Type.GUN:
+			speed = 40
 			return 0.1
 
 		Item.Type.SWORD:

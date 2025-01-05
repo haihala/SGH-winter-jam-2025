@@ -8,4 +8,3 @@ void fragment() {
 	float alpha = float(abs(coords.x) - coords.y < 0.0);
 	COLOR = vec4(player_color, alpha);
 }
-

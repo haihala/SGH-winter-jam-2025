@@ -15,7 +15,7 @@ shader_parameter/player_color = null
 radius = 40.1995
 
 [node name="Player" type="CharacterBody2D"]
-collision_layer = 7
+collision_layer = 15
 script = ExtResource("1_jyoey")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
