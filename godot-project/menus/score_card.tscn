@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://if411dxr8744"]
+
+[ext_resource type="Script" path="res://menus/score_card.gd" id="1_x0x3w"]
+[ext_resource type="Theme" uid="uid://ck8eyctgeg42k" path="res://theme.tres" id="2_gegxs"]
+
+[node name="Score card" type="MarginContainer" node_paths=PackedStringArray("player_label", "value_label")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.5
+offset_top = -47.5
+offset_right = 63.5
+offset_bottom = 47.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_bottom = 20
+script = ExtResource("1_x0x3w")
+player_label = NodePath("VBoxContainer/Player label")
+value_label = NodePath("VBoxContainer/HBoxContainer/Value")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Player label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_gegxs")
+theme_override_font_sizes/font_size = 30
+text = "Player 1"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 11
+alignment = 1
+
+[node name="Text" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_gegxs")
+theme_override_font_sizes/font_size = 20
+text = "Score: "
+
+[node name="Value" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_gegxs")
+theme_override_font_sizes/font_size = 20
+text = "0"

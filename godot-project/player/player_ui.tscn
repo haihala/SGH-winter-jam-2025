@@ -40,9 +40,15 @@ alignment = 1
 [node name="Money label" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_w4qbw")
+theme_override_font_sizes/font_size = 30
 text = "Money: "
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 
 [node name="Score label" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_w4qbw")
+theme_override_font_sizes/font_size = 30
 text = "Score: "

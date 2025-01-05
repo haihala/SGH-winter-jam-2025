@@ -6,7 +6,6 @@ signal update_money_ui
 var holding: Item.Type
 var health: int = 3
 var money: int = 0
-var score: int = 0
 var movement_input: Vector2 = Vector2.ZERO
 var ammo: int = -1
 
@@ -110,7 +109,7 @@ func pick_up(item_type):
 func take_damage(damaging_attack):
 	health -= 1
 	if health <= 0:
-		death.emit(player_index, damaging_attack.player)
+		death.emit(player_index, damaging_attack.player.player_index)
 	else:
 		$KnockdownCooldown.start()
 		var angle = damaging_attack.global_transform.get_rotation()

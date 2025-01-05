@@ -7,7 +7,6 @@ extends Node2D
 @export var player_hud_container: Control
 @export var timer_label: Label
 
-
 var spawn_points: Array[Vector2] = []
 var players = {}
 var huds = {}
@@ -17,7 +16,9 @@ func _ready() -> void:
 
 	setup_huds()
 
+	Globals.player_scores = {}
 	for index in range(Globals.player_handles.size()):
+		Globals.player_scores[Globals.player_handles[index]] = 0
 		spawn_player(Globals.player_handles[index], spawn_points[index])
 
 func _process(_delta: float) -> void:
@@ -27,17 +28,22 @@ func _process(_delta: float) -> void:
 	timer_label.text = "%02d:%02d" % [minutes, leftover_seconds]
 
 func timeout() -> void:
-	print("timeout")
+	get_tree().change_scene_to_file("res://menus/end_screen.tscn")
 
-func player_death(dying_player_index, killer) -> void:
-	killer.score += 1
-	huds[killer.player_index].update_score(killer.score)
+func player_death(dying_player_index, killer_index) -> void:
+	Globals.player_scores[killer_index] += 1
+	huds[killer_index].update_score(
+		Globals.player_scores[killer_index]
+	)
 
+	# TODO: Spawn money based on dying player's money
 	var pickup = pickup_scene.instantiate()
 	pickup.item_type = Item.Type.MONEY
 	pickup.position = players[dying_player_index].position
 	get_tree().root.add_child(pickup)
-	
+
+	huds[dying_player_index].update_money(0)
+
 	get_tree().queue_delete(players[dying_player_index])
 	players.erase(dying_player_index)
 

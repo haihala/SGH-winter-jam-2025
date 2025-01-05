@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnphcdgn52njd"]
+
+[ext_resource type="Script" path="res://menus/end_screen.gd" id="1_0esdj"]
+[ext_resource type="Theme" uid="uid://ck8eyctgeg42k" path="res://theme.tres" id="2_38oys"]
+[ext_resource type="Script" path="res://menus/autofocus.gd" id="3_1xwda"]
+
+[node name="EndScreen" type="HBoxContainer" node_paths=PackedStringArray("score_container")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+script = ExtResource("1_0esdj")
+score_container = NodePath("MarginContainer/VBoxContainer/Score container")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_top = 60
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_38oys")
+theme_override_font_sizes/font_size = 60
+text = "Game over"
+
+[node name="Score container" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Score heading" type="Label" parent="MarginContainer/VBoxContainer/Score container"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_38oys")
+theme_override_font_sizes/font_size = 30
+text = "Scores"
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_38oys")
+text = "Return to main menu"
+script = ExtResource("3_1xwda")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="to_main_menu"]

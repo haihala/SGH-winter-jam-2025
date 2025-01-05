@@ -10,3 +10,5 @@ static func player_color_for_handle(handle: int) -> Color:
 		2: return Color.MEDIUM_VIOLET_RED
 		3: return Color.DARK_RED
 	return Color.BLACK
+
+static var player_scores = {0: 1, -1: 9, 1: 4}
