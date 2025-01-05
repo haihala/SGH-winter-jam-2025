@@ -4,6 +4,7 @@ extends TileMapLayer
 func setup() -> Array[Vector2]:
 	var spawner_scene = load("res://items/spawner.tscn")
 	var vending_scene = load("res://items/vending_machine.tscn")
+	var tree_scene = load("res://items/tree.tscn")
 	var spawn_points: Array[Vector2] = []
 	for coords in get_used_cells():
 		var td = get_cell_tile_data(coords)
@@ -50,5 +51,13 @@ func setup() -> Array[Vector2]:
 			machine.item_type = Item.Type.HEART
 			machine.cost = 1
 			get_parent().add_child(machine)
-			
+
+		elif td.get_custom_data("tree_position"):
+			erase_cell(coords)
+		
+			var tree = tree_scene.instantiate()
+			tree.position = tile_position
+			tree.scale *= scale
+			get_parent().add_child(tree)
+
 	return spawn_points

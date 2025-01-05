@@ -50,6 +50,8 @@ func collision(obj) -> void:
 	if obj != player:
 		if obj.has_method("take_damage"):
 			obj.take_damage(self)
+		if obj.has_method("drop_money"):
+			obj.drop_money(self)
 		despawn()
 
 func despawn() -> void:

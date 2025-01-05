@@ -126,7 +126,6 @@ func attack():
 
 func shoot_burst() -> void:
 	for _i in range(5):
-		print(_i)
 		spawn_attack(false)
 		$AttackSound.stream = machinegun_sound
 		$AttackSound.volume_db = 0
