@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 signal death
 signal update_money_ui
+signal new_held_item
 
 var holding: Item.Type
 var health: int = 3
@@ -90,6 +91,7 @@ func attack():
 		ammo -= 1
 		if ammo == 0:	# -1 ammo means infinite
 			holding = Item.Type.NONE
+			new_held_item.emit(holding)
 		$AttackSound.play(0.0)
 
 func spawn_attack(scene: PackedScene, attached: bool, angle_offset: float = 0) -> void:
@@ -142,6 +144,7 @@ func pick_up(item_type):
 	else:
 		holding = item_type
 		ammo = Item.ammo_for(item_type)
+		new_held_item.emit(holding)
 
 func take_damage(damaging_attack):
 	health -= 1

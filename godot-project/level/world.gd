@@ -57,6 +57,7 @@ func spawn_player(player_index, point) -> void:
 	player.look_at(Vector2.ZERO)
 	player.death.connect(player_death)
 	player.update_money_ui.connect(huds[player_index].update_money)
+	player.new_held_item.connect(huds[player_index].update_held_item)
 	players[player_index] = player
 	get_tree().root.add_child.call_deferred(player)
 	
