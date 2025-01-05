@@ -3,7 +3,6 @@ extends Node2D
 var player = Node2D
 
 @export var money_transparency_speed = 0.5
-var money_value = 0
 
 func init(host):
 	player = host
@@ -17,10 +16,9 @@ func _process(delta: float) -> void:
 		return;
 	position = player.position
 	$HealthSprite.material.set_shader_parameter("current_health", player.health)
-	
-	if money_value != player.money:
-		money_value = player.money
-		$MoneyLabel.modulate.a = 1.0
-		$MoneyLabel.text = "$%s" % money_value
-	else:
-		$MoneyLabel.modulate.a -= delta*money_transparency_speed
+
+	$MoneyLabel.modulate.a -= delta*money_transparency_speed
+
+func update_money(value: int) -> void:
+	$MoneyLabel.modulate.a = 1.0
+	$MoneyLabel.text = "$%s" % value

@@ -1,19 +1,43 @@
 [gd_scene load_steps=3 format=3 uid="uid://b61g7bl4qn63q"]
 
 [ext_resource type="Script" path="res://player/player_ui.gd" id="1_fiqdv"]
+[ext_resource type="Theme" uid="uid://ck8eyctgeg42k" path="res://theme.tres" id="2_w4qbw"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_eeli3"]
-font_color = Color(0, 0, 0, 1)
-
-[node name="Player UI" type="VBoxContainer"]
-anchors_preset = 15
+[node name="Player UI" type="MarginContainer" node_paths=PackedStringArray("player_label", "money_label", "score_label")]
+anchors_preset = 1
+anchor_left = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -192.0
+offset_bottom = 96.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 20
 script = ExtResource("1_fiqdv")
+player_label = NodePath("VBoxContainer/Player label")
+money_label = NodePath("VBoxContainer/HBoxContainer/Money label")
+score_label = NodePath("VBoxContainer/HBoxContainer/Score label")
 
-[node name="Label" type="Label" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+
+[node name="Player label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_w4qbw")
+theme_override_font_sizes/font_size = 50
 text = "Player 1"
-label_settings = SubResource("LabelSettings_eeli3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 11
+alignment = 1
+
+[node name="Money label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_w4qbw")
+text = "Money: "
+
+[node name="Score label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_w4qbw")
+text = "Score: "

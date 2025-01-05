@@ -1,10 +1,12 @@
 extends CharacterBody2D
 
 signal death
+signal update_money_ui
 
 var holding: Item.Type
 var health: int = 3
 var money: int = 0
+var score: int = 0
 var movement_input: Vector2 = Vector2.ZERO
 var ammo: int = -1
 
@@ -14,20 +16,11 @@ var ammo: int = -1
 @export var on_hit_knockback: float = 800
 
 @onready var attack_scene: PackedScene = load("res://attacks/attack.tscn")
-@onready var hud_scene: PackedScene = load("res://player/player_hud.tscn")
-var player_color: Color = Color.BLACK
+var player_color: Color
 
 func _ready() -> void:
-	match player_index:
-		-1: player_color = Color.NAVY_BLUE
-		0: player_color = Color.DARK_ORANGE
-		1: player_color = Color.DARK_GREEN
-		2: player_color = Color.MEDIUM_VIOLET_RED
-		3: player_color = Color.DARK_RED
+	player_color = Globals.player_color_for_handle(player_index)
 	$Sprite2D.material.set_shader_parameter("player_color", player_color)
-	var hud = hud_scene.instantiate()
-	hud.init(self)
-	get_parent().add_child.call_deferred(hud)
 
 func _physics_process(_delta: float) -> void:
 	if player_index == -1:
@@ -109,6 +102,7 @@ func spawn_attack(scene: PackedScene, attached: bool) -> void:
 func pick_up(item_type):
 	if item_type == Item.Type.MONEY:
 		money += 1
+		update_money_ui.emit(money)
 	else:
 		holding = item_type
 		ammo = Item.ammo_for(item_type)
@@ -116,7 +110,7 @@ func pick_up(item_type):
 func take_damage(damaging_attack):
 	health -= 1
 	if health <= 0:
-		death.emit(player_index)
+		death.emit(player_index, damaging_attack.player)
 	else:
 		$KnockdownCooldown.start()
 		var angle = damaging_attack.global_transform.get_rotation()
