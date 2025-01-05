@@ -1,8 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://c38l8ju1ba25j"]
+[gd_scene load_steps=12 format=3 uid="uid://c38l8ju1ba25j"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_jyoey"]
+[ext_resource type="AudioStream" uid="uid://ds4djkgt4xsy6" path="res://player/shotgun.wav" id="2_ihuu4"]
 [ext_resource type="Shader" path="res://player/player.gdshader" id="2_ms42k"]
-[ext_resource type="AudioStream" uid="uid://cr4cky5f2txh1" path="res://player/pointy-octave0-f.wav" id="3_gwkjf"]
+[ext_resource type="AudioStream" uid="uid://crd6esb3o162u" path="res://player/pistol.wav" id="3_ng61f"]
+[ext_resource type="AudioStream" uid="uid://b8pxksr3wx1eo" path="res://player/sword.wav" id="4_wxm7v"]
+[ext_resource type="AudioStream" uid="uid://c7u071r2ipbs8" path="res://player/punch.wav" id="5_ragnj"]
+[ext_resource type="AudioStream" uid="uid://bu6xminq3unyt" path="res://player/pickup.wav" id="6_f1dp8"]
+[ext_resource type="AudioStream" uid="uid://dbo2ba6kdwb1q" path="res://player/pain.wav" id="8_u2k8d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v28hc"]
 resource_local_to_scene = true
@@ -17,6 +22,10 @@ radius = 40.1995
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 15
 script = ExtResource("1_jyoey")
+shotgun_sound = ExtResource("2_ihuu4")
+pistol_sound = ExtResource("3_ng61f")
+sword_sound = ExtResource("4_wxm7v")
+fist_sound = ExtResource("5_ragnj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_v28hc")
@@ -36,5 +45,11 @@ wait_time = 0.1
 one_shot = true
 
 [node name="AttackSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_gwkjf")
-pitch_scale = 4.0
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_f1dp8")
+volume_db = -10.0
+
+[node name="DamageSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_u2k8d")
+volume_db = -3.0

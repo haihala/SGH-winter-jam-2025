@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://blocq8j366fc0"]
+[gd_scene load_steps=8 format=3 uid="uid://blocq8j366fc0"]
 
 [ext_resource type="Script" path="res://items/vending_machine.gd" id="1_31ct4"]
 [ext_resource type="Texture2D" uid="uid://bxl2t73yams75" path="res://items/vending-machine.tres" id="1_fx7ob"]
 [ext_resource type="Texture2D" uid="uid://crrscr0kweurw" path="res://items/shotgun-sprite.tres" id="3_3swuh"]
 [ext_resource type="Texture2D" uid="uid://bqq5jqpyaicrn" path="res://items/money-sprite.tres" id="4_oklvc"]
+[ext_resource type="AudioStream" uid="uid://dole3rdg474ef" path="res://items/buy-sound.wav" id="5_g57sw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0yxx"]
 size = Vector2(14, 13)
@@ -47,6 +48,9 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger area"]
 shape = SubResource("CircleShape2D_amadv")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_g57sw")
 
 [connection signal="body_entered" from="Trigger area" to="." method="player_enter"]
 [connection signal="body_exited" from="Trigger area" to="." method="player_exit"]

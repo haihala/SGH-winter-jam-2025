@@ -25,6 +25,9 @@ func spawn_bill_at(x: float) -> void:
 	dupe.visible = true
 	add_child(dupe)
 
+func buy_from() -> void:
+	$AudioStreamPlayer.play(0)
+
 func player_enter(player) -> void:
 	player.machines_in_range.push_back(self)
 

@@ -11,10 +11,15 @@ var movement_input: Vector2 = Vector2.ZERO
 var ammo: int = -1
 var machines_in_range: Array[VendingMachine] = []
 
-@export var player_index: int = 0
-@export var speed: float = 1000
-@export var rotation_speed: float = 0.2
-@export var on_hit_knockback: float = 800
+var player_index: int = 0
+var speed: float = 1000
+var rotation_speed: float = 0.2
+var on_hit_knockback: float = 800
+
+@export var shotgun_sound: AudioStream
+@export var pistol_sound: AudioStream
+@export var sword_sound: AudioStream
+@export var fist_sound: AudioStream
 
 @onready var attack_scene: PackedScene = load("res://attacks/attack.tscn")
 var player_color: Color
@@ -81,18 +86,29 @@ func attack():
 				spawn_attack(attack_scene, false)
 				spawn_attack(attack_scene, false, PI/8)
 				spawn_attack(attack_scene, false, PI/4)
+				$AttackSound.stream = shotgun_sound
+				$AttackSound.volume_db = 5
+				
 			Item.Type.GUN:
 				spawn_attack(attack_scene, false)
+				$AttackSound.stream = pistol_sound
+				$AttackSound.volume_db = -15
+				
 			Item.Type.SWORD:
 				spawn_attack(attack_scene, true)
+				$AttackSound.stream = sword_sound
+				$AttackSound.volume_db = 1
+
 			Item.Type.NONE:
 				spawn_attack(attack_scene, true)
+				$AttackSound.stream = fist_sound
+				$AttackSound.volume_db = -10
+		$AttackSound.play(0.0)
 
 		ammo -= 1
 		if ammo == 0:	# -1 ammo means infinite
 			holding = Item.Type.NONE
 			new_held_item.emit(holding)
-		$AttackSound.play(0.0)
 
 func spawn_attack(scene: PackedScene, attached: bool, angle_offset: float = 0) -> void:
 	var instance = scene.instantiate()
@@ -132,10 +148,12 @@ func interact() -> void:
 			closest_affordable = machine
 	
 	if closest_affordable != null:
+		closest_affordable.buy_from()
 		money -= closest_affordable.cost
 		pick_up(closest_affordable.item_type)
 
 func pick_up(item_type):
+	$PickupSound.play()
 	if item_type == Item.Type.MONEY:
 		money += 1
 		update_money_ui.emit(money)
@@ -152,5 +170,6 @@ func take_damage(damaging_attack):
 		death.emit(player_index, damaging_attack.player.player_index)
 	else:
 		$KnockdownCooldown.start()
+		$DamageSound.play(0)
 		var angle = damaging_attack.global_transform.get_rotation()
 		velocity = on_hit_knockback * Vector2.from_angle(angle)
