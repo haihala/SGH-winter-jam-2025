@@ -20,6 +20,11 @@ var speed: float = 1000
 var rotation_speed: float = 0.2
 var on_hit_knockback: float = 800
 
+var max_sprite_shake = 0.3
+var sprite_shake = 0.0
+var sprite_shake_decay = 1.0
+var sprite_shake_speed = 4200.0
+
 @export var shotgun_sound: AudioStream
 @export var pistol_sound: AudioStream
 @export var sword_sound: AudioStream
@@ -30,9 +35,9 @@ var player_color: Color
 
 func _ready() -> void:
 	player_color = Globals.player_color_for_handle(player_index)
-	$Sprite2D.material.set_shader_parameter("player_color", player_color)
+	$Sprite.material.set_shader_parameter("player_color", player_color)
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if player_index == -1:
 		read_keyboard_input()
 
@@ -42,6 +47,7 @@ func _physics_process(_delta: float) -> void:
 	if not velocity.is_zero_approx():
 		face_forward()
 	update_interact_target()
+	update_sprite_shake(delta)
 
 func read_keyboard_input():
 	movement_input = Input.get_vector("kb_left", "kb_right", "kb_up", "kb_down")
@@ -181,3 +187,16 @@ func take_damage(damaging_attack):
 		$DamageSound.play(0)
 		var angle = damaging_attack.global_transform.get_rotation()
 		velocity = on_hit_knockback * Vector2.from_angle(angle)
+		sprite_shake = max_sprite_shake
+
+
+func update_sprite_shake(delta: float) -> void:
+	var decay = sprite_shake_decay * delta
+	if sprite_shake < decay:
+		sprite_shake = 0
+	else:
+		sprite_shake -= decay
+	
+	var seed = Time.get_unix_time_from_system() * sprite_shake_speed
+	$Sprite.offset.x = cos(seed) * sprite_shake
+	$Sprite.offset.y = sin(seed) * sprite_shake

@@ -27,7 +27,7 @@ pistol_sound = ExtResource("3_ng61f")
 sword_sound = ExtResource("4_wxm7v")
 fist_sound = ExtResource("5_ragnj")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_v28hc")
 position = Vector2(10, 0)
 rotation = 1.5708
