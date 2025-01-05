@@ -42,12 +42,9 @@ func _physics_process(_delta: float) -> void:
 
 func read_keyboard_input():
 	movement_input = Input.get_vector("kb_left", "kb_right", "kb_up", "kb_down")
-	
+
 	if Input.is_action_just_pressed("kb_attack"):
 		attack()
-
-	if Input.is_action_just_pressed("kb_interact"):
-		money += 1
 
 func _input(event):
 	if event.device != player_index || event.is_echo():
@@ -110,8 +107,11 @@ func spawn_attack(scene: PackedScene, attached: bool) -> void:
 	$AttackCooldown.start(instance.configure(self))
 
 func pick_up(item_type):
-	holding = item_type
-	ammo = Item.ammo_for(item_type)
+	if item_type == Item.Type.MONEY:
+		money += 1
+	else:
+		holding = item_type
+		ammo = Item.ammo_for(item_type)
 
 func take_damage(damaging_attack):
 	health -= 1

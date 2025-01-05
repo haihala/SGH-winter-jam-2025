@@ -6,8 +6,8 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_ostl4"]
 font_size = 250
-font_color = Color(0.839767, 0.669693, 0, 1)
-outline_size = 70
+font_color = Color(0, 0.471945, 8.66354e-07, 1)
+outline_size = 40
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7h3e8"]

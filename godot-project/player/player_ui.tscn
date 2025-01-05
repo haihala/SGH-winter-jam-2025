@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b61g7bl4qn63q"]
+
+[ext_resource type="Script" path="res://player/player_ui.gd" id="1_fiqdv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_eeli3"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="Player UI" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fiqdv")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Player 1"
+label_settings = SubResource("LabelSettings_eeli3")

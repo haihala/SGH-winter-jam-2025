@@ -1,8 +1,12 @@
 extends Node2D
 @onready var player_prefab = load("res://player/player.tscn")
+@onready var hud_scene = load("res://player/player_ui.tscn")
+@onready var pickup_scene: PackedScene = load("res://items/pickup.tscn")
+
 
 var spawn_points: Array[Vector2] = []
 var players = {}
+var huds = {}
 
 func _ready() -> void:
 	spawn_points = $TileMapLayer.setup()
@@ -10,7 +14,14 @@ func _ready() -> void:
 	for index in range(Globals.player_handles.size()):
 		spawn_player(Globals.player_handles[index], spawn_points[index])
 
+	setup_hud()
+
 func player_death(player_index) -> void:
+	var pickup = pickup_scene.instantiate()
+	pickup.item_type = Item.Type.MONEY
+	pickup.position = players[player_index].position
+	get_tree().root.add_child(pickup)
+	
 	get_tree().queue_delete(players[player_index])
 	players.erase(player_index)
 
@@ -46,3 +57,12 @@ func find_open_spawn():
 			max_min = dist
 			selected = point
 	return selected
+
+func setup_hud() -> void:
+	var label_number = 1
+	for handle in Globals.player_handles:
+		var player_hud = hud_scene.instantiate()
+		player_hud.init(label_number)
+		label_number += 1
+		huds[handle] = player_hud
+		$HUD/HBoxContainer/VBoxContainer.add_child(player_hud)
