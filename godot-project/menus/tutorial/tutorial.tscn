@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://djcsjpvr821k0"]
+[gd_scene load_steps=5 format=3 uid="uid://djcsjpvr821k0"]
 
 [ext_resource type="Theme" uid="uid://ck8eyctgeg42k" path="res://theme.tres" id="1_330yh"]
-[ext_resource type="Script" path="res://menus/tutorial.gd" id="1_sfk7v"]
+[ext_resource type="Script" path="res://menus/tutorial/tutorial.gd" id="1_sfk7v"]
 [ext_resource type="Script" path="res://menus/autofocus.gd" id="2_5aj8h"]
 
 [node name="Tutorial" type="HBoxContainer"]

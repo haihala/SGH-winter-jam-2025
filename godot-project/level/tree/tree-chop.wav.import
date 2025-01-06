@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://ds4djkgt4xsy6"
-path="res://.godot/imported/shotgun.wav-9d3310a0e553ce098901aba669d2b35f.sample"
+uid="uid://cvbr83fcu7dp"
+path="res://.godot/imported/tree-chop.wav-04d353f5a199b5009db2c60a57625f6d.sample"
 
 [deps]
 
-source_file="res://player/shotgun.wav"
-dest_files=["res://.godot/imported/shotgun.wav-9d3310a0e553ce098901aba669d2b35f.sample"]
+source_file="res://level/tree/tree-chop.wav"
+dest_files=["res://.godot/imported/tree-chop.wav-04d353f5a199b5009db2c60a57625f6d.sample"]
 
 [params]
 

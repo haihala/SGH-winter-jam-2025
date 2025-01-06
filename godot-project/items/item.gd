@@ -2,6 +2,7 @@ class_name Item
 
 enum Type {NONE, SWORD, GUN, SHOTGUN, MACHINEGUN, LANDMINE, HEART, MONEY}
 
+
 static func get_texture(type: Type) -> Texture:
 	match type:
 		Type.GUN:
@@ -21,6 +22,30 @@ static func get_texture(type: Type) -> Texture:
 
 	# This should never happen, means a null item is getting a texture
 	return load("res://items/missing-sprite.tres")
+
+
+static func play_usage_sound(type: Type, stream_player: AudioStreamPlayer) -> void:
+	match type:
+		Type.GUN:
+			stream_player.stream = load("res://items/pistol.wav")
+			stream_player.volume_db = -15
+		Type.SWORD:
+			stream_player.stream = load("res://items/sword.wav")
+			stream_player.volume_db = 1
+		Type.SHOTGUN:
+			stream_player.stream = load("res://items/shotgun.wav")
+			stream_player.volume_db = 5
+		Type.MACHINEGUN:
+			stream_player.stream = load("res://items/machinegun.wav")
+			stream_player.volume_db = 0
+		Type.LANDMINE:
+			stream_player.stream = load("res://items/landmine.wav")
+			stream_player.volume_db = 0
+		Type.NONE:
+			stream_player.stream = load("res://items/punch.wav")
+			stream_player.volume_db = -10
+
+	stream_player.play(0)
 
 static func random_pickup() -> Type:
 	return [

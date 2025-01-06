@@ -1,7 +1,7 @@
 extends HBoxContainer
 
 @export var score_container: Control
-@onready var player_card: PackedScene = load("res://menus/score_card.tscn")
+@export var player_card: PackedScene
 
 func _ready() -> void:
 	var sorted_handles = Globals.player_handles.duplicate()
@@ -17,4 +17,4 @@ func ord(a, b):
 	return Globals.player_scores[a] > Globals.player_scores[b]
 
 func to_main_menu() -> void:
-	get_tree().change_scene_to_file("res://menus/main_menu.tscn")
+	get_tree().change_scene_to_file("res://menus/main/main_menu.tscn")

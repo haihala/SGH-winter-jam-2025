@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://dp6m1lfq8givx"]
 
-[ext_resource type="Script" path="res://items/tree.gd" id="1_54au6"]
-[ext_resource type="Texture2D" uid="uid://b7etx32hvlyig" path="res://items/tree-sprite.tres" id="2_b2x6h"]
+[ext_resource type="Script" path="res://level/tree/tree.gd" id="1_54au6"]
+[ext_resource type="Texture2D" uid="uid://b7etx32hvlyig" path="res://level/tree/tree-sprite.tres" id="2_b2x6h"]
 [ext_resource type="Texture2D" uid="uid://qkl7pf5d2ldt" path="res://sprite_sheet.png" id="3_clo5c"]
-[ext_resource type="AudioStream" uid="uid://cvbr83fcu7dp" path="res://items/tree-chop.wav" id="4_lohqq"]
+[ext_resource type="AudioStream" uid="uid://cvbr83fcu7dp" path="res://level/tree/tree-chop.wav" id="4_lohqq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iu6fh"]
 atlas = ExtResource("3_clo5c")

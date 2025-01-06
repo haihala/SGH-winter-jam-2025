@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://crd6esb3o162u"
-path="res://.godot/imported/pistol.wav-7f75e43b600c327ae6ca35aa73b20d2e.sample"
+uid="uid://b1oqtiahf6gtw"
+path="res://.godot/imported/machinegun.wav-9b8b824a6a9ca9046ab78b80606306b3.sample"
 
 [deps]
 
-source_file="res://player/pistol.wav"
-dest_files=["res://.godot/imported/pistol.wav-7f75e43b600c327ae6ca35aa73b20d2e.sample"]
+source_file="res://items/machinegun.wav"
+dest_files=["res://.godot/imported/machinegun.wav-9b8b824a6a9ca9046ab78b80606306b3.sample"]
 
 [params]
 

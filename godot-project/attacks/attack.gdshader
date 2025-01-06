@@ -6,7 +6,7 @@ const float pixel_count = 4.0;
 
 void fragment() {
 	vec2 coords = (UV - 0.5) * 2.0;
-	
+
 	if (length(coords) > 0.8) {
 		COLOR = vec4(0.0);
 	}

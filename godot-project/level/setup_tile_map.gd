@@ -1,11 +1,11 @@
 extends TileMapLayer
 
-@onready var vending_scene = load("res://items/vending_machine.tscn")
-
+@onready var vending_scene = load("res://level/vending_machine/vending_machine.tscn")
+@onready var spawner_scene = load("res://level/spawner/spawner.tscn")
+@onready var tree_scene = load("res://level/tree/tree.tscn")
 # Called when the node enters the scene tree for the first time.
 func setup() -> Array[Vector2]:
-	var spawner_scene = load("res://items/spawner.tscn")
-	var tree_scene = load("res://items/tree.tscn")
+
 	var spawn_points: Array[Vector2] = []
 	for coords in get_used_cells():
 		var td = get_cell_tile_data(coords)

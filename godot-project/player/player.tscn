@@ -1,13 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://c38l8ju1ba25j"]
+[gd_scene load_steps=8 format=3 uid="uid://c38l8ju1ba25j"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_jyoey"]
-[ext_resource type="AudioStream" uid="uid://ds4djkgt4xsy6" path="res://player/shotgun.wav" id="2_ihuu4"]
 [ext_resource type="Shader" path="res://player/player.gdshader" id="2_ms42k"]
-[ext_resource type="AudioStream" uid="uid://dng0j8nyyukpf" path="res://items/landmine.wav" id="2_o1kps"]
-[ext_resource type="AudioStream" uid="uid://b1oqtiahf6gtw" path="res://player/machinegun.wav" id="2_wl6qe"]
-[ext_resource type="AudioStream" uid="uid://crd6esb3o162u" path="res://player/pistol.wav" id="3_ng61f"]
-[ext_resource type="AudioStream" uid="uid://b8pxksr3wx1eo" path="res://player/sword.wav" id="4_wxm7v"]
-[ext_resource type="AudioStream" uid="uid://c7u071r2ipbs8" path="res://player/punch.wav" id="5_ragnj"]
 [ext_resource type="AudioStream" uid="uid://bu6xminq3unyt" path="res://player/pickup.wav" id="6_f1dp8"]
 [ext_resource type="AudioStream" uid="uid://dbo2ba6kdwb1q" path="res://player/pain.wav" id="8_u2k8d"]
 
@@ -24,12 +18,6 @@ radius = 40.1995
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 15
 script = ExtResource("1_jyoey")
-landmine_sound = ExtResource("2_o1kps")
-machinegun_sound = ExtResource("2_wl6qe")
-shotgun_sound = ExtResource("2_ihuu4")
-pistol_sound = ExtResource("3_ng61f")
-sword_sound = ExtResource("4_wxm7v")
-fist_sound = ExtResource("5_ragnj")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 z_index = 10

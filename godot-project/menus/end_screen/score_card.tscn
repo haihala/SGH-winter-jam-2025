@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://if411dxr8744"]
 
-[ext_resource type="Script" path="res://menus/score_card.gd" id="1_x0x3w"]
+[ext_resource type="Script" path="res://menus/end_screen/score_card.gd" id="1_x0x3w"]
 [ext_resource type="Theme" uid="uid://ck8eyctgeg42k" path="res://theme.tres" id="2_gegxs"]
 
 [node name="Score card" type="MarginContainer" node_paths=PackedStringArray("player_label", "value_label")]

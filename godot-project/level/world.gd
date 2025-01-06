@@ -1,8 +1,8 @@
 extends Node2D
-@onready var player_prefab = load("res://player/player.tscn")
-@onready var hud_scene = load("res://player/player_ui.tscn")
-@onready var pickup_scene: PackedScene = load("res://items/pickup.tscn")
-@onready var float_hud_scene: PackedScene = load("res://player/player_hud.tscn")
+@export var player_prefab: PackedScene
+@export var card_hud_prefab:  PackedScene
+@export var float_hud_prefab: PackedScene
+@export var pickup_scene: PackedScene
 
 @export var player_hud_container: Control
 @export var timer_label: Label
@@ -28,7 +28,7 @@ func _process(_delta: float) -> void:
 	timer_label.text = "%02d:%02d" % [minutes, leftover_seconds]
 
 func timeout() -> void:
-	get_tree().change_scene_to_file("res://menus/end_screen.tscn")
+	get_tree().change_scene_to_file("res://menus/end_screen/end_screen.tscn")
 
 func player_death(dying_player_index, killer_index) -> void:
 	Globals.player_scores[killer_index] += 1
@@ -60,7 +60,7 @@ func spawn_player(player_index, point) -> void:
 	players[player_index] = player
 	add_child.call_deferred(player)
 	
-	var float_hud = float_hud_scene.instantiate()
+	var float_hud = float_hud_prefab.instantiate()
 	float_hud.player = player
 	player.update_money_ui.connect(float_hud.update_money)
 	add_child.call_deferred(float_hud)
@@ -89,8 +89,8 @@ func find_open_spawn():
 func setup_huds() -> void:
 	var label_number = 0
 	for handle in Globals.player_handles:
-		var player_hud = hud_scene.instantiate()
-		player_hud.init(label_number)
+		var player_card = card_hud_prefab.instantiate()
+		player_card.init(label_number)
 		label_number += 1
-		huds[handle] = player_hud
-		player_hud_container.add_child(player_hud)
+		huds[handle] = player_card
+		player_hud_container.add_child(player_card)

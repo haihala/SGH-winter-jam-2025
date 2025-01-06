@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cy625tqange3d"]
 
 [ext_resource type="Texture2D" uid="uid://qkl7pf5d2ldt" path="res://sprite_sheet.png" id="1_dnt6y"]
-[ext_resource type="Script" path="res://items/spawner.gd" id="1_nth2g"]
+[ext_resource type="Script" path="res://level/spawner/spawner.gd" id="1_nth2g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_evyhk"]
 atlas = ExtResource("1_dnt6y")

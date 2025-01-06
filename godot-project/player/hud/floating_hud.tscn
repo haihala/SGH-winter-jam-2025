@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://cw6o6w86eyaty"]
 
-[ext_resource type="Script" path="res://player/player_hud.gd" id="1_dja8r"]
+[ext_resource type="Script" path="res://player/hud/floating_hud.gd" id="1_dja8r"]
 [ext_resource type="Theme" uid="uid://ck8eyctgeg42k" path="res://theme.tres" id="2_1wq5q"]
-[ext_resource type="Shader" path="res://player/healthBar.gdshader" id="3_suj2l"]
-[ext_resource type="Shader" path="res://player/arrow.gdshader" id="4_tneb5"]
+[ext_resource type="Shader" path="res://player/hud/healthBar.gdshader" id="3_suj2l"]
+[ext_resource type="Shader" path="res://player/hud/arrow.gdshader" id="4_tneb5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ostl4"]
 font_size = 250

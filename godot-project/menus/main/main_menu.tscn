@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://menus/autofocus.gd" id="1_7626g"]
 [ext_resource type="Theme" uid="uid://ck8eyctgeg42k" path="res://theme.tres" id="1_iq0p2"]
-[ext_resource type="Script" path="res://menus/main_menu.gd" id="1_yv2m5"]
+[ext_resource type="Script" path="res://menus/main/main_menu.gd" id="1_yv2m5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xw5ru"]
 font_size = 87

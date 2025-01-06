@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://cvbr83fcu7dp"
-path="res://.godot/imported/tree-chop.wav-439423aee7b8157f9fd8b853d354ede8.sample"
+uid="uid://crd6esb3o162u"
+path="res://.godot/imported/pistol.wav-6d7493cb46747f7b1a2ae4da7775729f.sample"
 
 [deps]
 
-source_file="res://items/tree-chop.wav"
-dest_files=["res://.godot/imported/tree-chop.wav-439423aee7b8157f9fd8b853d354ede8.sample"]
+source_file="res://items/pistol.wav"
+dest_files=["res://.godot/imported/pistol.wav-6d7493cb46747f7b1a2ae4da7775729f.sample"]
 
 [params]
 

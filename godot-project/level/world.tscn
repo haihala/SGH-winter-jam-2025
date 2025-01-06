@@ -1,10 +1,14 @@
-[gd_scene load_steps=8 format=4 uid="uid://oxmwk48rbsxo"]
+[gd_scene load_steps=12 format=4 uid="uid://oxmwk48rbsxo"]
 
 [ext_resource type="Texture2D" uid="uid://qkl7pf5d2ldt" path="res://sprite_sheet.png" id="1_7x67d"]
 [ext_resource type="Script" path="res://level/world.gd" id="1_osrak"]
+[ext_resource type="PackedScene" uid="uid://c38l8ju1ba25j" path="res://player/player.tscn" id="2_5tmvf"]
 [ext_resource type="Script" path="res://level/setup_tile_map.gd" id="3_74ovu"]
-[ext_resource type="AudioStream" uid="uid://codcrar0rhdr0" path="res://level/pointy-octave3-d.wav" id="4_24okt"]
+[ext_resource type="PackedScene" uid="uid://b61g7bl4qn63q" path="res://player/hud/player_card.tscn" id="3_mjn53"]
+[ext_resource type="AudioStream" uid="uid://codcrar0rhdr0" path="res://level/respawn.wav" id="4_24okt"]
+[ext_resource type="PackedScene" uid="uid://cw6o6w86eyaty" path="res://player/hud/floating_hud.tscn" id="4_xogn4"]
 [ext_resource type="Theme" uid="uid://ck8eyctgeg42k" path="res://theme.tres" id="5_6xw6o"]
+[ext_resource type="PackedScene" uid="uid://di6g0tqjrvx1f" path="res://items/pickup.tscn" id="5_mnbgo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b1nh1"]
 texture = ExtResource("1_7x67d")
@@ -106,6 +110,10 @@ sources/1 = SubResource("TileSetAtlasSource_b1nh1")
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("player_hud_container", "timer_label")]
 script = ExtResource("1_osrak")
+player_prefab = ExtResource("2_5tmvf")
+card_hud_prefab = ExtResource("3_mjn53")
+float_hud_prefab = ExtResource("4_xogn4")
+pickup_scene = ExtResource("5_mnbgo")
 player_hud_container = NodePath("HUD/HBoxContainer/VBoxContainer2/HBoxContainer/Player pane container")
 timer_label = NodePath("HUD/HBoxContainer/VBoxContainer2/MarginContainer/HBoxContainer/HBoxContainer/Timer")
 

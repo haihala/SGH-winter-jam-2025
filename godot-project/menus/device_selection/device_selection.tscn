@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dljlt8l5pnj6y"]
+[gd_scene load_steps=4 format=3 uid="uid://dljlt8l5pnj6y"]
 
-[ext_resource type="Script" path="res://menus/device_select.gd" id="1_xakli"]
-[ext_resource type="Theme" uid="uid://ck8eyctgeg42k" path="res://theme.tres" id="2_wjxdq"]
+[ext_resource type="Script" path="res://menus/device_selection/device_selection.gd" id="1_x6m17"]
+[ext_resource type="PackedScene" uid="uid://b2by12q5mq0u0" path="res://menus/device_selection/device_option.tscn" id="2_83pmv"]
+[ext_resource type="Theme" uid="uid://ck8eyctgeg42k" path="res://theme.tres" id="2_yj43y"]
 
 [node name="Device select" type="Control" node_paths=PackedStringArray("error_message")]
 layout_mode = 3
@@ -10,8 +11,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_xakli")
+script = ExtResource("1_x6m17")
 error_message = NodePath("Layout/Error")
+selector_prefab = ExtResource("2_83pmv")
 
 [node name="Layout" type="VBoxContainer" parent="."]
 layout_direction = 2
@@ -31,13 +33,13 @@ theme_override_constants/separation = 20
 
 [node name="Title" type="Label" parent="Layout"]
 layout_mode = 2
-theme = ExtResource("2_wjxdq")
+theme = ExtResource("2_yj43y")
 theme_override_font_sizes/font_size = 35
 text = "Who wants to play?"
 
 [node name="Explanation" type="Label" parent="Layout"]
 layout_mode = 2
-theme = ExtResource("2_wjxdq")
+theme = ExtResource("2_yj43y")
 text = "Left / right (a/d on keyboard) to toggle ready
 Bottom face button (space on keyboard) to proceed
 Right face button (esc on keyboard) to return to main menu"
@@ -49,5 +51,5 @@ theme_override_constants/separation = 50
 [node name="Error" type="Label" parent="Layout"]
 visible = false
 layout_mode = 2
-theme = ExtResource("2_wjxdq")
+theme = ExtResource("2_yj43y")
 text = "You need 1-4, preferably 2-4 players"

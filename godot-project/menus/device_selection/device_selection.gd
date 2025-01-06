@@ -3,12 +3,12 @@ extends Control
 var devices = {-1: false}
 
 @export var error_message: Node
+@export var selector_prefab: PackedScene
 
 func _ready() -> void:
 	for controller in Input.get_connected_joypads():
 		devices[controller] = false
 
-	var selector_prefab = load("res://menus/device_selector.tscn")
 	for dev in devices:
 		var selector = selector_prefab.instantiate()
 		selector.setup(dev, self)
@@ -30,4 +30,4 @@ func start_game() -> void:
 		get_tree().change_scene_to_file("res://level/world.tscn")
 
 func return_to_main_menu() -> void:
-	get_tree().change_scene_to_file("res://menus/main_menu.tscn")
+	get_tree().change_scene_to_file("res://menus/main/main_menu.tscn")

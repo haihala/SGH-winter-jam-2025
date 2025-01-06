@@ -25,12 +25,6 @@ var sprite_shake = 0.0
 var sprite_shake_decay = 1.0
 var sprite_shake_speed = 4200.0
 
-@export var landmine_sound: AudioStream
-@export var machinegun_sound: AudioStream
-@export var shotgun_sound: AudioStream
-@export var pistol_sound: AudioStream
-@export var sword_sound: AudioStream
-@export var fist_sound: AudioStream
 
 @onready var attack_scene: PackedScene = load("res://attacks/attack.tscn")
 var player_color: Color
@@ -98,32 +92,21 @@ func attack():
 				spawn_attack(false)
 				spawn_attack(false, PI/8)
 				spawn_attack(false, PI/4)
-				$AttackSound.stream = shotgun_sound
-				$AttackSound.volume_db = 5
 
 			Item.Type.MACHINEGUN:
 				shoot_burst()
 
 			Item.Type.GUN:
 				spawn_attack(false)
-				$AttackSound.stream = pistol_sound
-				$AttackSound.volume_db = -15
 
 			Item.Type.LANDMINE:
 				spawn_attack(false)
-				$AttackSound.stream = landmine_sound
-				$AttackSound.volume_db = 0
 
 			Item.Type.SWORD:
 				spawn_attack(true)
-				$AttackSound.stream = sword_sound
-				$AttackSound.volume_db = 1
 
 			Item.Type.NONE:
 				spawn_attack(true)
-				$AttackSound.stream = fist_sound
-				$AttackSound.volume_db = -10
-		$AttackSound.play(0.0)
 
 		ammo -= 1
 		if ammo == 0:	# -1 ammo means infinite
@@ -133,9 +116,6 @@ func attack():
 func shoot_burst() -> void:
 	for _i in range(5):
 		spawn_attack(false)
-		$AttackSound.stream = machinegun_sound
-		$AttackSound.volume_db = 0
-		$AttackSound.play(0.0)
 		await get_tree().create_timer(0.1).timeout
 
 func spawn_attack(attached: bool, angle_offset: float = 0) -> void:
@@ -158,6 +138,7 @@ func spawn_attack(attached: bool, angle_offset: float = 0) -> void:
 
 	host.add_child(instance)
 	$AttackCooldown.start(instance.configure(self))
+	Item.play_usage_sound(holding, $AttackSound)
 
 func update_interact_target() -> void:
 	var closest = null
