@@ -1,9 +1,10 @@
 extends TileMapLayer
 
+@onready var vending_scene = load("res://items/vending_machine.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func setup() -> Array[Vector2]:
 	var spawner_scene = load("res://items/spawner.tscn")
-	var vending_scene = load("res://items/vending_machine.tscn")
 	var tree_scene = load("res://items/tree.tscn")
 	var spawn_points: Array[Vector2] = []
 	for coords in get_used_cells():
@@ -25,32 +26,19 @@ func setup() -> Array[Vector2]:
 		elif td.get_custom_data("shotgun_vending_machine"):
 			erase_cell(coords)
 			
-			var machine = vending_scene.instantiate()
-			machine.position = tile_position
-			machine.scale *= scale
-			machine.item_type = Item.Type.SHOTGUN
-			machine.cost = 3
-			get_parent().add_child(machine)
+			spawn_vending_machine(Item.Type.SHOTGUN, 3, tile_position)
 
 		elif td.get_custom_data("machinegun_vending_machine"):
 			erase_cell(coords)
-			
-			var machine = vending_scene.instantiate()
-			machine.position = tile_position
-			machine.scale *= scale
-			machine.item_type = Item.Type.MACHINEGUN
-			machine.cost = 2
-			get_parent().add_child(machine)
+			spawn_vending_machine(Item.Type.MACHINEGUN, 2, tile_position)
+
+		elif td.get_custom_data("landmine_vending_machine"):
+			erase_cell(coords)
+			spawn_vending_machine(Item.Type.LANDMINE, 1, tile_position)
 
 		elif td.get_custom_data("health_vending_machine"):
 			erase_cell(coords)
-		
-			var machine = vending_scene.instantiate()
-			machine.position = tile_position
-			machine.scale *= scale
-			machine.item_type = Item.Type.HEART
-			machine.cost = 1
-			get_parent().add_child(machine)
+			spawn_vending_machine(Item.Type.HEART, 1, tile_position)
 
 		elif td.get_custom_data("tree_position"):
 			erase_cell(coords)
@@ -61,3 +49,11 @@ func setup() -> Array[Vector2]:
 			get_parent().add_child(tree)
 
 	return spawn_points
+
+func spawn_vending_machine(item_type: Item.Type, cost: int, pos: Vector2) -> void:
+	var machine = vending_scene.instantiate()
+	machine.position = pos
+	machine.scale *= scale
+	machine.item_type = item_type
+	machine.cost = cost
+	get_parent().add_child(machine)

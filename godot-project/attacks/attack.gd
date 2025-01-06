@@ -26,6 +26,13 @@ func configure(shooter) -> float:
 			speed = 40
 			return 0.1
 
+		Item.Type.LANDMINE:
+			speed = 0
+			scale.x = 5.0
+			scale.y = 5.0
+			$Area2D.set_collision_mask_value(1, false)
+			return 0.0
+
 		Item.Type.SWORD:
 			speed = 2
 			scale.x = 2.0

@@ -1,6 +1,6 @@
 class_name Item
 
-enum Type {NONE, SWORD, GUN, SHOTGUN, MACHINEGUN, HEART, MONEY}
+enum Type {NONE, SWORD, GUN, SHOTGUN, MACHINEGUN, LANDMINE, HEART, MONEY}
 
 static func get_texture(type: Type) -> Texture:
 	match type:
@@ -12,6 +12,8 @@ static func get_texture(type: Type) -> Texture:
 			return load("res://items/shotgun-sprite.tres")
 		Type.MACHINEGUN:
 			return load("res://items/machinegun-sprite.tres")
+		Type.LANDMINE:
+			return load("res://items/landmine-sprite.tres")
 		Type.HEART:
 			return load("res://items/heart-sprite.tres")
 		Type.MONEY:
@@ -34,5 +36,8 @@ static func ammo_for(type: Type) -> int:
 			return 4
 		Type.MACHINEGUN:
 			return 5	# Each burst is one shot
+		Type.LANDMINE:
+			return 1
+
 	# Infinite
 	return -1

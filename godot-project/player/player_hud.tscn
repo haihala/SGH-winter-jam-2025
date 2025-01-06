@@ -40,12 +40,13 @@ label_settings = SubResource("LabelSettings_ostl4")
 horizontal_alignment = 1
 
 [node name="HealthSprite" type="Sprite2D" parent="."]
+z_index = 10
 material = SubResource("ShaderMaterial_7h3e8")
 scale = Vector2(200, 200)
 texture = SubResource("CanvasTexture_ofh67")
 
 [node name="InteractPointer" type="Sprite2D" parent="."]
-z_index = 10
+z_index = 15
 material = SubResource("ShaderMaterial_lksdj")
 scale = Vector2(300, 300)
 texture = SubResource("CanvasTexture_ofh67")

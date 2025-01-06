@@ -25,6 +25,7 @@ var sprite_shake = 0.0
 var sprite_shake_decay = 1.0
 var sprite_shake_speed = 4200.0
 
+@export var landmine_sound: AudioStream
 @export var machinegun_sound: AudioStream
 @export var shotgun_sound: AudioStream
 @export var pistol_sound: AudioStream
@@ -107,7 +108,12 @@ func attack():
 				spawn_attack(false)
 				$AttackSound.stream = pistol_sound
 				$AttackSound.volume_db = -15
-				
+
+			Item.Type.LANDMINE:
+				spawn_attack(false)
+				$AttackSound.stream = landmine_sound
+				$AttackSound.volume_db = 0
+
 			Item.Type.SWORD:
 				spawn_attack(true)
 				$AttackSound.stream = sword_sound
