@@ -40,6 +40,10 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	if $KnockdownCooldown.is_stopped():
 		velocity = movement_input * speed
+		if holding == Item.Type.SWORD:
+			# Everyone knows you run faster with a knife
+			velocity *= 1.2
+
 	if not velocity.is_zero_approx():
 		face_forward()
 	update_interact_target()
