@@ -1,11 +1,11 @@
 class_name Item
 
-enum Type {NONE, SWORD, GUN, SHOTGUN, MACHINEGUN, LANDMINE, HEART, MONEY}
+enum Type {NONE, SWORD, PISTOL, SHOTGUN, MACHINEGUN, LANDMINE, HEART, MONEY}
 
 
 static func get_texture(type: Type) -> Texture:
 	match type:
-		Type.GUN:
+		Type.PISTOL:
 			return load("res://items/pistol-sprite.tres")
 		Type.SWORD:
 			return load("res://items/sword-sprite.tres")
@@ -26,7 +26,7 @@ static func get_texture(type: Type) -> Texture:
 
 static func play_usage_sound(type: Type, stream_player: AudioStreamPlayer) -> void:
 	match type:
-		Type.GUN:
+		Type.PISTOL:
 			stream_player.stream = load("res://items/pistol.wav")
 			stream_player.volume_db = -15
 		Type.SWORD:
@@ -49,13 +49,13 @@ static func play_usage_sound(type: Type, stream_player: AudioStreamPlayer) -> vo
 
 static func random_pickup() -> Type:
 	return [
-		Type.GUN,
+		Type.PISTOL,
 		Type.SWORD
 	].pick_random()
 
 static func ammo_for(type: Type) -> int:
 	match type:
-		Type.GUN:
+		Type.PISTOL:
 			return 6
 		Type.SHOTGUN:
 			return 4

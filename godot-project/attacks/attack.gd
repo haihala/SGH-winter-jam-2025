@@ -22,7 +22,7 @@ func configure(shooter) -> float:
 			speed = 30
 			return 1.0
 
-		Item.Type.GUN:
+		Item.Type.PISTOL:
 			speed = 40
 			return 0.1
 
@@ -39,11 +39,13 @@ func configure(shooter) -> float:
 			scale.y = 3.0
 			position.x = 100
 			$Timer.start()
-			return 1.0
+			$Area2D.set_collision_mask_value(1, false)
+			return 0.5
 
 		Item.Type.NONE:
 			$Timer.start()
-			return 0.8
+			$Area2D.set_collision_mask_value(1, false)
+			return 0.2
 
 	return 0
 

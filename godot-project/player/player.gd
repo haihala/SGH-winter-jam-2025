@@ -96,7 +96,7 @@ func attack():
 			Item.Type.MACHINEGUN:
 				shoot_burst()
 
-			Item.Type.GUN:
+			Item.Type.PISTOL:
 				spawn_attack(false)
 
 			Item.Type.LANDMINE:
