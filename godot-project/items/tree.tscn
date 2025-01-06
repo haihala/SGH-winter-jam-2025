@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dp6m1lfq8givx"]
+[gd_scene load_steps=9 format=3 uid="uid://dp6m1lfq8givx"]
 
 [ext_resource type="Script" path="res://items/tree.gd" id="1_54au6"]
 [ext_resource type="Texture2D" uid="uid://b7etx32hvlyig" path="res://items/tree-sprite.tres" id="2_b2x6h"]
 [ext_resource type="Texture2D" uid="uid://qkl7pf5d2ldt" path="res://sprite_sheet.png" id="3_clo5c"]
+[ext_resource type="AudioStream" uid="uid://cvbr83fcu7dp" path="res://items/tree-chop.wav" id="4_lohqq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iu6fh"]
 atlas = ExtResource("3_clo5c")
@@ -48,5 +49,8 @@ animation = &"regrow"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_lfusd")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_lohqq")
 
 [connection signal="animation_finished" from="Sprite" to="." method="refresh"]

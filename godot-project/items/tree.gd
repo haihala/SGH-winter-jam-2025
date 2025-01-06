@@ -14,7 +14,9 @@ func drop_money(attack):
 		money.item_type = Item.Type.MONEY
 		money.position = dir * distance + position
 		get_parent().add_child.call_deferred(money)
+		$AudioStreamPlayer.play(0)
 		$Sprite.play("regrow")
 
 func refresh():
 	$Sprite.play("ready")
+	$AudioStreamPlayer.play(0)
